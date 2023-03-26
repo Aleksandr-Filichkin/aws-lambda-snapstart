@@ -7,7 +7,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.filichkin.blog.lambda.model.Book;
 import com.filichkin.blog.lambda.storage.EnhancedClientBookStorage;
-import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.ContainerCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -34,7 +34,7 @@ public class BookHandler implements RequestHandler<APIGatewayProxyRequestEvent, 
     private static EnhancedRequestDispatcher initDispatcher() {
         DynamoDbEnhancedClient dynamoDbEnhancedClient = DynamoDbEnhancedClient.builder()
                 .dynamoDbClient(DynamoDbClient.builder()
-                        .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+                        .credentialsProvider(ContainerCredentialsProvider.builder().build())
                         .region(Region.EU_WEST_1)
                         .build())
                 .build();
