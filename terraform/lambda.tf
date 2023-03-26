@@ -16,7 +16,7 @@ resource "aws_lambda_function" "example_lambda" {
   filename         = local.lambda_payload_filename
   role             = aws_iam_role.lambda_role.arn
   memory_size      = 256
-  timeout          = 30
+  timeout          = 20
   snap_start {
     apply_on = "PublishedVersions"
   }
