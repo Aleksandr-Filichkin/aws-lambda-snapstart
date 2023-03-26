@@ -1,0 +1,10 @@
+/terraform/.terraform/
+/target/
+/terraform/backend/.terraform/
+/terraform/backend/.terraform.lock.hcl
+/terraform/.terraform.lock.hcl
+/terraform/backend/terraform.tfstate.backup
+/terraform/backend/terraform.tfstate
+/common/target/
+/lambda-java/target/
+/.idea/

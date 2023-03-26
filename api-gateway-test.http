@@ -1,0 +1,7 @@
+POST https://${API-GATEWAY}/prod/example
+accept: application/json
+content-type: application/json
+
+{
+  "name": "12d1"
+}
