@@ -7,7 +7,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "terraform-state-alex-test1"
-    key            = "test/web-flux-fargate.tfstate"
+    key            = "test/snapstart"
     region         = "eu-west-1"
     dynamodb_table = "terraform-state-locking"
   }
