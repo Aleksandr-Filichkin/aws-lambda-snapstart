@@ -17,8 +17,8 @@ resource "aws_lambda_function" "example_lambda" {
   role             = aws_iam_role.lambda_role.arn
   memory_size      = 512
   timeout          = 30
-  snap_start {
-    apply_on = "PublishedVersions"
-  }
+#  snap_start {
+#    apply_on = "PublishedVersions"
+#  }
   publish = true
 }
