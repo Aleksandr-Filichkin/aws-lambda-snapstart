@@ -15,7 +15,7 @@ resource "aws_lambda_function" "example_lambda" {
   handler          = "com.filichkin.blog.lambda.v2.handler.BookHandler::handleRequest"
   filename         = local.lambda_payload_filename
   role             = aws_iam_role.lambda_role.arn
-  memory_size      = 1024
+  memory_size      = 1536
   timeout          = 30
 #  snap_start {
 #    apply_on = "PublishedVersions"
