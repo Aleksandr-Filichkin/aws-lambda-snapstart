@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda-role"
+  name = "${var.function-name}-role"
 
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"
@@ -16,7 +16,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_policy" "lambda_policy" {
-  name        = "lambda-policy"
+  name        =  "${var.function-name}-policy"
   description = "Policy for the Lambda function to access the DynamoDB table"
   policy      = jsonencode({
     Version   = "2012-10-17"
