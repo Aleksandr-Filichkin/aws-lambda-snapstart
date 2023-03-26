@@ -7,6 +7,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.filichkin.blog.lambda.model.Book;
 import com.filichkin.blog.lambda.storage.EnhancedClientBookStorage;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -18,15 +19,22 @@ import static com.filichkin.blog.lambda.storage.BookStorage.TABLE_NAME;
 
 public class BookHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
+    /**
+     *  All clients should be static and initialized on init state, it dramatically reduces cold start, because use CPU burst of AWS Lambda.
+     */
     private static final EnhancedRequestDispatcher ENHANCED_REQUEST_DISPATCHER = initDispatcher();
 
     static {
+        /**
+         *  warm-up dynamo DB client by saving a dummy data into Dymanodb
+         */
         ENHANCED_REQUEST_DISPATCHER.warmUp();
     }
 
     private static EnhancedRequestDispatcher initDispatcher() {
         DynamoDbEnhancedClient dynamoDbEnhancedClient = DynamoDbEnhancedClient.builder()
                 .dynamoDbClient(DynamoDbClient.builder()
+                        .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
                         .region(Region.EU_WEST_1)
                         .build())
                 .build();
