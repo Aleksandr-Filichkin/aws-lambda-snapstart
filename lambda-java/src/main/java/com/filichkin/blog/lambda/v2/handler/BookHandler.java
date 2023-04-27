@@ -18,7 +18,7 @@ public class BookHandler implements RequestHandler<KinesisEvent, String> {
 
     @Override
     public String handleRequest(KinesisEvent apiGatewayProxyRequestEvent, Context context) {
-        LOGGER.info("1");
+        LOGGER.info("2 snap start");
         LOGGER.info(apiGatewayProxyRequestEvent.getRecords().get(0).toString());
         return "test";
     }
