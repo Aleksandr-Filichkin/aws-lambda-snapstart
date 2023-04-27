@@ -17,8 +17,21 @@ resource "aws_lambda_function" "example_lambda" {
   role             = aws_iam_role.lambda_role.arn
   memory_size      = 256
   timeout          = 20
-  snap_start {
-    apply_on = "PublishedVersions"
-  }
-  publish = true
+#  snap_start {
+#    apply_on = "PublishedVersions"
+#  }
+}
+
+#resource "aws_lambda_alias" "test_lambda_alias" {
+#  name             = "live"
+#  description      = "a sample description"
+#  function_name    = aws_lambda_function.example_lambda.arn
+#  function_version = "$LATEST"
+#}
+
+resource "aws_lambda_event_source_mapping" "kinesis_click_stream_to_lambda_consumer" {
+  batch_size        = 10
+  event_source_arn  = aws_kinesis_stream_consumer.click.arn
+  function_name     = aws_lambda_function.example_lambda.arn
+  starting_position = "TRIM_HORIZON"
 }

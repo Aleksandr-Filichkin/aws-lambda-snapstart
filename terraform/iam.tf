@@ -32,6 +32,22 @@ resource "aws_iam_policy" "lambda_policy" {
         Resource = aws_dynamodb_table.global.arn
       },
       {
+        "Effect" : "Allow",
+        "Action" : [
+          "kinesis:DescribeStream",
+          "kinesis:DescribeStreamSummary",
+          "kinesis:GetRecords",
+          "kinesis:GetShardIterator",
+          "kinesis:ListShards",
+          "kinesis:ListStreams",
+          "kinesis:SubscribeToShard"
+        ],
+        "Resource" : [
+          aws_kinesis_stream.click.arn,
+          aws_kinesis_stream_consumer.click.arn,
+        ]
+      },
+      {
         Effect = "Allow"
         Action = [
           "logs:CreateLogStream",

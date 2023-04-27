@@ -10,10 +10,10 @@ public class EnhancedRequestDispatcher extends RequestDispatcher {
         super(enhancedClientBookStorage, objectMapper);
     }
 
-    public void warmUp(){
-        String warmUpValue="warmUp";
-        Book warmUpBook = Book.builder().id(warmUpValue).name(warmUpValue).build();
-        //warm up the storage
-        getBookStorage().update(warmUpBook);
-    }
+//    public void warmUp(){
+//        String warmUpValue="warmUp";
+//        Book warmUpBook = Book.builder().id(warmUpValue).name(warmUpValue).build();
+//        //warm up the storage
+//        getBookStorage().update(warmUpBook);
+//    }
 }
