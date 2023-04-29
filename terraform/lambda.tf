@@ -11,7 +11,7 @@ locals {
 resource "aws_lambda_function" "example_lambda" {
   function_name    = var.function-name
   source_code_hash = base64sha256(filebase64(local.lambda_payload_filename))
-  runtime          = "java11"
+  runtime          = "java17"
   handler          = "com.filichkin.blog.lambda.v2.handler.BookHandler::handleRequest"
   filename         = local.lambda_payload_filename
   role             = aws_iam_role.lambda_role.arn
