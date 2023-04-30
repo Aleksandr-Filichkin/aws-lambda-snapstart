@@ -16,7 +16,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_policy" "lambda_policy" {
-  name        =  "${var.function-name}-policy"
+  name        = "${var.function-name}-policy"
   description = "Policy for the Lambda function to access the DynamoDB table"
   policy      = jsonencode({
     Version   = "2012-10-17"
@@ -38,6 +38,16 @@ resource "aws_iam_policy" "lambda_policy" {
           "logs:PutLogEvents"
         ]
         Resource : "arn:aws:logs:*:*:*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "xray:PutTraceSegments",
+          "xray:PutTelemetryRecords"
+        ],
+        "Resource" : [
+          "*"
+        ]
       }
     ]
   })
