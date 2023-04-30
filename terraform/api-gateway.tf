@@ -20,7 +20,7 @@ resource "aws_api_gateway_integration" "example_integration" {
   http_method             = aws_api_gateway_method.example_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.example_lambda.arn}:${aws_lambda_function.example_lambda.version}/invocations"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.example_lambda.arn}/invocations"
 
 }
 
@@ -48,7 +48,7 @@ resource "aws_api_gateway_deployment" "example_deployment" {
 resource "aws_lambda_permission" "apigw" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.example_lambda.function_name}:${aws_lambda_function.example_lambda.version}"
+  function_name = "${aws_lambda_function.example_lambda.function_name}"
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource

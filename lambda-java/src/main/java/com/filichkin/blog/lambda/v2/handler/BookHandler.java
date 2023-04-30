@@ -34,7 +34,7 @@ public class BookHandler implements RequestHandler<APIGatewayProxyRequestEvent, 
     private static EnhancedRequestDispatcher initDispatcher() {
         DynamoDbEnhancedClient dynamoDbEnhancedClient = DynamoDbEnhancedClient.builder()
                 .dynamoDbClient(DynamoDbClient.builder()
-                        .credentialsProvider(ContainerCredentialsProvider.builder().build())
+//                        .credentialsProvider(ContainerCredentialsProvider.builder().build())
                         .region(Region.EU_WEST_1)
                         .build())
                 .build();

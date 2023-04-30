@@ -1,4 +1,4 @@
-POST https://${API-GATEWAY}/prod/example
+POST https://e0ykgtp6wk.execute-api.eu-west-1.amazonaws.com/prod/example
 accept: application/json
 content-type: application/json
 

@@ -17,8 +17,11 @@ resource "aws_lambda_function" "example_lambda" {
   role             = aws_iam_role.lambda_role.arn
   memory_size      = 256
   timeout          = 20
-  snap_start {
-    apply_on = "PublishedVersions"
+  tracing_config{
+    mode = "Active"
   }
+#  snap_start {
+#    apply_on = "PublishedVersions"
+#  }
   publish = true
 }
