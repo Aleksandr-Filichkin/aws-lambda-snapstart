@@ -1,7 +1,16 @@
-POST https://${API-GATEWAY}/prod/example
+POST https://lvgui0ta7d.execute-api.eu-west-1.amazonaws.com/prod/java11
 accept: application/json
 content-type: application/json
 
 {
   "name": "12d1"
+}
+###
+
+POST https://lvgui0ta7d.execute-api.eu-west-1.amazonaws.com/prod/java17
+accept: application/json
+content-type: application/json
+
+{
+"name": "12d1"
 }
