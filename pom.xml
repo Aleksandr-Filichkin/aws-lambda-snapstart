@@ -10,7 +10,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <awssdk.version>2.16.50</awssdk.version>
     <aws.lambda.java.core.version>1.2.1</aws.lambda.java.core.version>
